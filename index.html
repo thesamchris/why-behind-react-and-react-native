@@ -1,0 +1,39 @@
+<html>
+	<head>
+		<title>Why Behind React and React Native</title>
+
+		<style>
+			.dark {
+				color: white;
+				background: black;
+			}
+		</style>
+	</head>
+	<body class="dark">
+		<div id="app"></div>
+		<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+		<script type="text/babel" data-type="module" data-presets="react">
+			import React from "https://esm.sh/react"
+			import { createRoot } from "https://esm.sh/react-dom/client"
+
+			window.count = 0
+			
+			const DayOne = () =>  {
+				return (
+					<>
+						<h1>{window.count}</h1>
+						<button onClick={() => { 
+							window.count = window.count + 1 
+							console.log(window.count)
+							rerender()
+						} }>Increment count</button>
+					</>
+				)
+			}
+
+			const root = createRoot(document.getElementById("app"))
+			const rerender = () => root.render(<DayOne/>)
+			rerender()
+		</script>
+	</body>
+</html>
